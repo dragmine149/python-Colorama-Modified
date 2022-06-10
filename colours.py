@@ -193,6 +193,7 @@ class colourRetrieve:
     """
     def __init__(self, choice=None):
         self.format, self.colours = ConsoleFormat()
+        self.fullName = None
 
         # reset if no input
         if choice is None or len(choice) == 0:
@@ -223,21 +224,23 @@ class colourRetrieve:
 
     def __getColour(self, choice, mode):
         # checks what needs to be found
-        if mode[0] != 'c':
+        if mode[0] != 'colours':
             choice = choice[2:]
 
         # checks if whole word
         if choice in self.colours[mode[1]]:
             return self.colours[mode[1]][choice]
 
+        # import ipdb; ipdb.set_trace()
         # checks for first letter
         for option in self.colours[mode[1]]:
+            self.fullName = option
             if option[:len(choice)] == choice:
                 return self.colours[mode[1]][option]
 
             # checks for multi word
             spltStr = option.split(' ')
-            if choice[0] == 'l':
+            if choice[0] == 'l' or choice[0] == 'd':
                 if option[6:6 + len(choice[1:])] == choice[1:]:
                     return self.colours[mode[1]][option]
 
@@ -251,6 +254,7 @@ class colourRetrieve:
 
         # check for letter
         for option in self.format:
+            self.fullName = option
             if option[:len(choice)] == choice:
                 return self.format[option]
 
