@@ -3,7 +3,7 @@ colours.py, the best file to print colours out in the console!
 
 NOTE: Console only!! This does not work in an IDE
 
-Usage:
+Usage (this will also import colorama by default so that it works on windows):
 import colours
 from colours import * (advanced recommended)
 from colours import c (recommended)
